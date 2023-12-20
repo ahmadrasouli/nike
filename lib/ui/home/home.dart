@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
           body: SafeArea(
             child: BlocBuilder<HomeBloc, HomeState>(
               builder: (context, state) {
-                if (state is HomeSuccess) {
+                if (state is HomeSuccess || state is HomeRefresh) {
                   return ListView.builder(
                       itemCount: 5,
                       padding: const EdgeInsets.fromLTRB(12, 12, 12, 100),
@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                             return Container();
                         }
                       });
-                } else if (state is HomeLoading || state is HomeRefresh) {
+                } else if (state is HomeLoading) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (state is HomeError) {
                   return Center(
