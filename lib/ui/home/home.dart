@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike2/data/repo/banner_repository.dart';
@@ -24,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           body: SafeArea(
             child: BlocBuilder<HomeBloc, HomeState>(
               builder: (context, state) {
-                if (state is HomeSuccess || state is HomeRefresh) {
+                if (state is HomeSuccess) {
                   return ListView.builder(
                       itemCount: 5,
                       padding: const EdgeInsets.fromLTRB(12, 12, 12, 100),
@@ -34,8 +35,17 @@ class HomeScreen extends StatelessWidget {
                             return SizedBox(
                                 height: 100,
                                 child: Image.asset('assets/img/nike.png'));
-                          default:
-                            return Container();
+                          case 2:
+                            return PageView.builder(
+                              itemBuilder: (context, index) =>
+                                  CachedNetworkImage(
+                                imageUrl: "http://via.placeholder.com/350x150",
+                                placeholder: (context, url) =>
+                                    CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              ),
+                            );
                         }
                       });
                 } else if (state is HomeLoading) {
