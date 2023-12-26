@@ -2,10 +2,12 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nike2/data/banner.dart';
 import 'package:nike2/data/repo/banner_repository.dart';
 import 'package:nike2/data/repo/product_repository.dart';
 import 'package:nike2/ui/home/bloc/home_bloc.dart';
 import 'package:nike2/ui/widgets/image.dart';
+import 'package:nike2/ui/widgets/slider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -36,11 +38,9 @@ class HomeScreen extends StatelessWidget {
                                 height: 100,
                                 child: Image.asset('assets/img/nike.png'));
                           case 2:
-                            return PageView.builder(
-                                itemBuilder: (context, index) =>
-                                    const ImageLoadingService(
-                                      imageUrl: '',
-                                    ));
+                            return bannersSlider(
+                              banners: state.banners,
+                            );
                         }
                       });
                 } else if (state is HomeLoading) {
