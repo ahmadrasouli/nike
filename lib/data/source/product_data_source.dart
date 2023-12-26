@@ -1,7 +1,5 @@
-import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:nike2/common/exceptions.dart';
 import 'package:nike2/data/common/http_response_validator.dart';
 
 import '../product.dart';
