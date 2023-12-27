@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ImageLoadingService extends StatelessWidget {
   final String imageUrl;
@@ -9,6 +9,6 @@ class ImageLoadingService extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(imageUrl);
+    return SizedBox(height: 50, width: 50, child: Image.network(imageUrl));
   }
 }
