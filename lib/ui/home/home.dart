@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                             return SizedBox(
                                 height: 100,
                                 child: Image.asset('assets/img/nike.png'));
-                          case 2:
+                          case 1:
                             return bannersSlider(
                               banners: state.banners,
                             );
