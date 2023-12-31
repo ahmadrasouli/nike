@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: TextTheme(
+            labelLarge: defaulttextstyle,
             bodyMedium: defaulttextstyle,
             titleLarge: defaulttextstyle.copyWith(fontWeight: FontWeight.bold),
             bodySmall: defaulttextstyle.apply(
