@@ -16,6 +16,7 @@ class bannersSlider extends StatelessWidget {
       child: PageView.builder(
           itemCount: banners.length,
           itemBuilder: (context, index) => ImageLoadingService(
+                borderRadius: BorderRadius.circular(30),
                 imageUrl: banners[index].imageUrl,
               )),
     );

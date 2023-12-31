@@ -23,6 +23,7 @@ class HomeScreen extends StatelessWidget {
           return homeBloc;
         },
         child: Scaffold(
+          backgroundColor: Colors.grey.shade200,
           appBar: AppBar(),
           body: SafeArea(
             child: BlocBuilder<HomeBloc, HomeState>(
