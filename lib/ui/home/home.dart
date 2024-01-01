@@ -56,6 +56,7 @@ class HomeScreen extends StatelessWidget {
                                 ],
                               ),
                               ListView.builder(
+                                  scrollDirection: Axis.horizontal,
                                   itemCount: state.latestProducts.length,
                                   itemBuilder: (context, index) => Container(
                                         width: 100,
