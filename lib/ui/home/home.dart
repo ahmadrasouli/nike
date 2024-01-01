@@ -54,7 +54,14 @@ class HomeScreen extends StatelessWidget {
                                       onPressed: () {},
                                       child: const Text('مشاهده همه'))
                                 ],
-                              )
+                              ),
+                              ListView.builder(
+                                  itemCount: state.latestProducts.length,
+                                  itemBuilder: (context, index) => Container(
+                                        width: 100,
+                                        height: 100,
+                                        color: Colors.blue,
+                                      ))
                             ],
                           ),
                         );
