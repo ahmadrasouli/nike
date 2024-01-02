@@ -66,6 +66,8 @@ class HomeScreen extends StatelessWidget {
                             ],
                           ),
                         );
+                      default:
+                        return Container();
                     }
                   });
             } else if (state is HomeLoading) {
