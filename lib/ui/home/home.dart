@@ -1,9 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nike2/data/banner.dart';
 import 'package:nike2/data/repo/banner_repository.dart';
 import 'package:nike2/data/repo/product_repository.dart';
 import 'package:nike2/ui/home/bloc/home_bloc.dart';
+import 'package:nike2/ui/widgets/image.dart';
+import 'package:nike2/ui/widgets/slider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -23,7 +26,7 @@ class HomeScreen extends StatelessWidget {
           body: SafeArea(
             child: BlocBuilder<HomeBloc, HomeState>(
               builder: (context, state) {
-                if (state is HomeSuccess || state is HomeRefresh) {
+                if (state is HomeSuccess) {
                   return ListView.builder(
                       itemCount: 5,
                       padding: const EdgeInsets.fromLTRB(12, 12, 12, 100),
@@ -33,8 +36,10 @@ class HomeScreen extends StatelessWidget {
                             return SizedBox(
                                 height: 100,
                                 child: Image.asset('assets/img/nike.png'));
-                          default:
-                            return Container();
+                          case 2:
+                            return bannersSlider(
+                              banners: state.banners,
+                            );
                         }
                       });
                 } else if (state is HomeLoading) {

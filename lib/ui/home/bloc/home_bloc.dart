@@ -16,7 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc({required this.bannerRepository, required this.productRepository})
       : super(HomeLoading()) {
     on<HomeEvent>((event, emit) async {
-      if (event is HomeStarted) {
+      if (event is HomeStarted || event is HomeRefresh) {
         try {
           emit(HomeLoading());
           final banners = await bannerRepository.getAll();
