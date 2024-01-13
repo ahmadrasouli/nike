@@ -12,7 +12,7 @@ class ImageLoadingService extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-        borderRadius: borderRadius,
+        borderRadius: borderRadius!,
         child: Image.network(
           imageUrl,
           fit: BoxFit.cover,
