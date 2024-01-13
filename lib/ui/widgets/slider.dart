@@ -20,7 +20,7 @@ class bannersSlider extends StatelessWidget {
           PageView.builder(
               controller: _controller,
               itemCount: banners.length,
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) => _slide(banner: banners[index])),
           Positioned(
             bottom: 8,
@@ -51,7 +51,6 @@ class bannersSlider extends StatelessWidget {
 class _slide extends StatelessWidget {
   final BannerEntity banner;
   const _slide({
-    super.key,
     required this.banner,
   });
 

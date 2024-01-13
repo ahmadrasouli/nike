@@ -19,9 +19,9 @@ class BannerRemoteDataSource
     validateResponse(response);
     final List<BannerEntity> banners = [];
 
-    (response.data as List).forEach((jasonObject) {
+    for (var jasonObject in (response.data as List)) {
       banners.add(BannerEntity.fromJason(jasonObject));
-    });
+    }
     return banners;
   }
 }
