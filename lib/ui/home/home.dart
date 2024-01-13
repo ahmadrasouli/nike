@@ -59,14 +59,20 @@ class HomeScreen extends StatelessWidget {
                                       child: const Text('مشاهده همه'))
                                 ],
                               ),
-                              ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: state.latestProducts.length,
-                                  itemBuilder: (context, index) => Container(
-                                        width: 100,
-                                        height: 100,
-                                        color: Colors.blue,
-                                      ))
+                              SizedBox(
+                                height: 200,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: state.latestProducts.length,
+                                    itemBuilder: (context, index) => Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Container(
+                                            width: 100,
+                                            height: 100,
+                                            color: Colors.blue,
+                                          ),
+                                        )),
+                              )
                             ],
                           ),
                         );
