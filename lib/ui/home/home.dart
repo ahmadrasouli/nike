@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nike2/data/product.dart';
 import 'package:nike2/data/repo/banner_repository.dart';
 import 'package:nike2/data/repo/product_repository.dart';
 import 'package:nike2/ui/home/bloc/home_bloc.dart';
@@ -41,37 +42,18 @@ class HomeScreen extends StatelessWidget {
                           banners: state.banners,
                         );
                       case 3:
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 12, right: 12),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text('جدیدترین محصولات'),
-                                  TextButton(
-                                      onPressed: () {},
-                                      child: const Text('مشاهده همه'))
-                                ],
-                              ),
-                              SizedBox(
-                                height: 200,
-                                child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: state.latestProducts.length,
-                                    itemBuilder: (context, index) => Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Container(
-                                            width: 100,
-                                            height: 100,
-                                            color: Colors.blue,
-                                          ),
-                                        )),
-                              )
-                            ],
-                          ),
+                        return _HorizontalProductList(
+                          onTap: () {},
+                          title: 'جدیدترین محصولات',
+                          products: state.latestProducts,
                         );
+                      case 4:
+                        return _HorizontalProductList(
+                          onTap: () {},
+                          title: 'پربازدیدترین محصولات',
+                          products: state.popularProducts,
+                        );
+
                       default:
                         return Container();
                     }
@@ -97,5 +79,66 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     ));
+  }
+}
+
+class _HorizontalProductList extends StatelessWidget {
+  final String title;
+  final GestureTapCallback onTap;
+  final List<productEntity> products;
+  const _HorizontalProductList({
+    required this.title,
+    required this.onTap,
+    required this.products,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 12, right: 12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(title),
+              TextButton(onPressed: onTap, child: const Text('مشاهده همه'))
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 290,
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: products.length,
+              padding: const EdgeInsets.only(left: 8, right: 8),
+              itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Stack(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                              width: 176,
+                              height: 189,
+                              child: Image.network(products[index].imageUrl)),
+                          Text(products[index].title),
+                          Text(products[index].previousPrice.toString()),
+                          Text(products[index].price.toString()),
+                        ],
+                      ),
+                      Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(150)),
+                      )
+                    ],
+                  ))),
+        )
+      ],
+    );
   }
 }
